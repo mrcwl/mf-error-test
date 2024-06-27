@@ -19,11 +19,11 @@ export default defineConfig({
           },
           shared: {
             react: {
-              singleton: false,
+              singleton: true,
               requiredVersion: '18.2.0',
             },
             'react-dom': {
-              singleton: false,
+              singleton: true,
               requiredVersion: '18.2.0',
             }
           }
