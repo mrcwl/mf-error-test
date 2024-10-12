@@ -1,3 +1,3 @@
 onmessage = async (event) => {
-  console.log('remote message')
+  console.log('remote1 message')
 };

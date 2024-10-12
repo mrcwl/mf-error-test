@@ -4,31 +4,22 @@ import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 
 export default defineConfig({
   server: {
-    port: 2001,
+    port: 2002,
   },
   dev: {
     assetPrefix: true,
   },
   tools: {
     rspack: (config, { appendPlugins }) => {
-      config.output!.uniqueName = 'federation_provider';
-
-      // Uncaught NetworkError: Failed to execute 'importScripts' on 'WorkerGlobalScope'
-      config.output!.publicPath = 'auto';
-
+      // You need to set a unique value that is not equal to other applications
+      config.output!.uniqueName = 'remote1';
       appendPlugins([
         new ModuleFederationPlugin({
-          name: 'federation_provider',
+          name: 'remote1',
           filename: 'remoteEntry.js',
           exposes: {
             './button': './src/Test.tsx',
           },
-
-          // Uncaught NetworkError: Failed to execute 'importScripts' on 'WorkerGlobalScope'
-          remotes: {
-            remote1: `remote1@http://localhost:2002/remoteEntry.js`
-          },
-
           shared: ['react', 'react-dom'],
         }),
       ]);
